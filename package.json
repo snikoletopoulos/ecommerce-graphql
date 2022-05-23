@@ -2,13 +2,17 @@
   "name": "ecommerce-graphql",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "nodemon",
+    "format": " prettier --write src/**/*.ts"
   },
   "author": "Stavros",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^17.0.35",
     "apollo-server": "^3.7.0",
     "graphql": "^16.5.0"
   }
