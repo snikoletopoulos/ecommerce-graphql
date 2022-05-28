@@ -28,4 +28,19 @@ exports.Mutation = {
 
 		return newProduct;
 	},
+
+	addReview: (_, { input }, { reviews }) => {
+		const newReview = {
+			id: uuid(),
+			date: input.date,
+			title: input.title,
+			comment: input.comment,
+			rating: input.rating,
+			productId: input.productId,
+		};
+
+		reviews.push(newReview);
+
+		return newReview;
+	},
 };
