@@ -1,5 +1,5 @@
 const { ApolloServer } = require("apollo-server");
-const { products, categories, reviews } = require("./db");
+const { db } = require("./db");
 
 const { typeDefs } = require("./schema");
 const { Query } = require("./resolvers/Query");
@@ -15,11 +15,7 @@ const server = new ApolloServer({
 		Product,
 		Mutation,
 	},
-	context: {
-		categories,
-		products,
-		reviews,
-	},
+	context: { db },
 });
 
 server.listen().then(({ url }) => {

@@ -1,9 +1,9 @@
 exports.Query = {
 	hello: () => "Hello world!",
-	products: (_, { filter }, { products, reviews }) => {
-		if (!filter) return products;
+	products: (_, { filter }, { db }) => {
+		if (!filter) return db.products;
 
-		let filteredProducts = products;
+		let filteredProducts = db.products;
 
 		if ("onSale" in filter) {
 			filteredProducts = filteredProducts.filter(
@@ -28,9 +28,9 @@ exports.Query = {
 
 		return filteredProducts;
 	},
-	product: (_, { id }, { products }) =>
-		products.find(product => product.id === id),
-	categories: (_, _2, { categories }) => categories,
-	category: (_, { id }, { categories }) =>
-		categories.find(category => category.id === id),
+	product: (_, { id }, { db }) =>
+		db.products.find(product => product.id === id),
+	categories: (_, _2, { db }) => db.categories,
+	category: (_, { id }, { db }) =>
+		db.categories.find(category => category.id === id),
 };

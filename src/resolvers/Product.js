@@ -1,6 +1,6 @@
 exports.Product = {
-	category: ({ categoryId }, _, { categories }) =>
-		categories.find(category => category.id === categoryId),
-	reviews: ({ id }, _, { reviews }) =>
-		reviews.filter(review => review.productId === id),
+	category: ({ categoryId }, _, { db }) =>
+		db.categories.find(category => category.id === categoryId),
+	reviews: ({ id }, _, { db }) =>
+		db.reviews.filter(review => review.productId === id),
 };
