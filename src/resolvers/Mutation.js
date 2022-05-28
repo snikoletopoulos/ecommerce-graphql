@@ -65,4 +65,10 @@ exports.Mutation = {
 
 		return true;
 	},
+
+	deleteReview: (_, { id }, { db }) => {
+		db.reviews = db.reviews.filter(review => review.id !== id);
+
+		return true;
+	},
 };
