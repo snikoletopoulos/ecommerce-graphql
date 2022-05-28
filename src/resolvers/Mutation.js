@@ -71,4 +71,17 @@ exports.Mutation = {
 
 		return true;
 	},
+
+	updateCategory: (_, { id, input }, { db }) => {
+		const categoryIndex = db.categories.findIndex(
+			category => category.id === id
+		);
+
+		db.categories[categoryIndex] = {
+			...db.categories[categoryIndex],
+			...input,
+		};
+
+		return db.categories[categoryIndex];
+	},
 };
