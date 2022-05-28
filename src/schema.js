@@ -50,7 +50,6 @@ exports.typeDefs = gql`
 	}
 
 	input AddProductInput {
-		id: ID!
 		name: String!
 		description: String!
 		image: String!
