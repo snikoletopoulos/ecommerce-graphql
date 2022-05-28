@@ -1,7 +1,7 @@
 const { v4: uuid } = require("uuid");
 
 exports.Mutation = {
-	addCategory: (parent, { input }, { db }) => {
+	addCategory: (_, { input }, { db }) => {
 		const newCategory = {
 			id: uuid(),
 			name: input.name,
@@ -12,7 +12,7 @@ exports.Mutation = {
 		return newCategory;
 	},
 
-	addProduct: (parent, { input }, { db }) => {
+	addProduct: (_, { input }, { db }) => {
 		const newProduct = {
 			id: uuid(),
 			name: input.name,
