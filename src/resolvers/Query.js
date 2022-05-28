@@ -30,7 +30,7 @@ exports.Query = {
 	},
 	product: (_, { id }, { products }) =>
 		products.find(product => product.id === id),
-	categories: () => categories,
+	categories: (_, _2, { categories }) => categories,
 	category: (_, { id }, { categories }) =>
 		categories.find(category => category.id === id),
 };
