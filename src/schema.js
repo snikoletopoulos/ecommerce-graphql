@@ -48,4 +48,15 @@ exports.typeDefs = gql`
 	input AddCategoryInput {
 		name: String!
 	}
+
+	input AddProductInput {
+		id: ID!
+		name: String!
+		description: String!
+		image: String!
+		quantity: Int!
+		price: Float!
+		onSale: Boolean!
+		categoryId: ID
+	}
 `;
