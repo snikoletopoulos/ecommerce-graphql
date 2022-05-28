@@ -95,5 +95,15 @@ exports.Mutation = {
 
 		return db.products[productIndex];
 	},
+
+	updateReview: (_, { id, input }, { db }) => {
+		const reviewIndex = db.reviews.findIndex(review => review.id === id);
+
+		db.reviews[reviewIndex] = {
+			...db.reviews[reviewIndex],
+			...input,
+		};
+
+		return db.reviews[reviewIndex];
 	},
 };

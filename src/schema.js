@@ -77,6 +77,14 @@ exports.typeDefs = gql`
 		productId: ID!
 	}
 
+	input UpdateReviewInput {
+		date: String
+		title: String
+		comment: String
+		rating: Int
+		productId: ID
+	}
+
 	input UpdateProductInput {
 		name: String
 		description: String
