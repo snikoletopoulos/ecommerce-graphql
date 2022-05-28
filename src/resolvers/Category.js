@@ -1,5 +1,5 @@
 exports.Category = {
-	products: (_, { filter }, { products, reviews }) => {
+	products: ({ id }, { filter }, { products, reviews }) => {
 		const categoryProducts = products.filter(
 			product => product.categoryId === id
 		);
