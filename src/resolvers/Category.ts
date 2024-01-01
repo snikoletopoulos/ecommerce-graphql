@@ -1,4 +1,6 @@
-exports.Category = {
+import { type CategoryResolvers } from "../types/graphql";
+
+export const Category: CategoryResolvers = {
 	products: ({ id }, { filter }, { db }) => {
 		const categoryProducts = db.products.filter(
 			product => product.categoryId === id
@@ -14,9 +16,9 @@ exports.Category = {
 			);
 		}
 
-		if ([1, 2, 3, 4, 5].includes(filter?.avgRating)) {
+		if (filter.avgRating && [1, 2, 3, 4, 5].includes(filter.avgRating)) {
 			filteredProducts = filteredProducts.filter(product => {
-				const productReviews = reviews.filter(
+				const productReviews = db.reviews.filter(
 					review => review.productId === product.id
 				);
 
@@ -25,7 +27,7 @@ exports.Category = {
 						return acc + review.rating;
 					}, 0) / productReviews.length;
 
-				return avgRating >= filter.avgRating;
+				return avgRating >= (filter.avgRating ?? 0);
 			});
 		}
 

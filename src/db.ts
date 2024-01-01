@@ -1,4 +1,15 @@
-const products = [
+export interface Product {
+	id: string;
+	name: string;
+	price: number;
+	description: string;
+	quantity: number;
+	image: string;
+	onSale: boolean;
+	categoryId?: Category["id"] | null;
+}
+
+export const products: Product[] = [
 	{
 		id: "53a0724c-a416-4cac-ae45-bfaedce1f147",
 		name: "Steel Pot",
@@ -91,7 +102,12 @@ const products = [
 	},
 ];
 
-const categories = [
+export interface Category {
+	id: string;
+	name: string;
+}
+
+export const categories: Category[] = [
 	{
 		id: "c01b1ff4-f894-4ef2-b27a-22aacc2fca70",
 		name: "Kitchen",
@@ -106,14 +122,23 @@ const categories = [
 	},
 ];
 
-const reviews = [
+export interface Review {
+	id: string;
+	date: string;
+	title: string;
+	comment?: string | null;
+	rating: number;
+	productId: Product["id"];
+}
+
+export const reviews: Review[] = [
 	{
 		id: "b22da5d4-6a4b-4db5-8ec3-acc228c36260",
 		date: "2021-01-01",
 		title: "This is bad",
 		comment: "when i bought this it broke the stove",
 		rating: 1,
-		productId: 1,
+		productId: "53a0724c-a416-4cac-ae45-bfaedce1f147",
 	},
 	{
 		id: "78851fe8-a657-410f-9b0a-2bc952636e16",
@@ -285,9 +310,3 @@ const reviews = [
 		productId: "47bf3941-9c8b-42c0-9c72-7f3985492a5b",
 	},
 ];
-
-exports.db = {
-	categories,
-	products,
-	reviews,
-};

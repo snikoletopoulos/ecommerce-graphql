@@ -1,4 +1,6 @@
-exports.Query = {
+import { type QueryResolvers } from "../types/graphql";
+
+export const Query: QueryResolvers = {
 	hello: () => "Hello world!",
 	products: (_, { filter }, { db }) => {
 		if (!filter) return db.products;
@@ -11,9 +13,9 @@ exports.Query = {
 			);
 		}
 
-		if ([1, 2, 3, 4, 5].includes(filter?.avgRating)) {
+		if (filter?.avgRating && [1, 2, 3, 4, 5].includes(filter.avgRating)) {
 			filteredProducts = filteredProducts.filter(product => {
-				const productReviews = reviews.filter(
+				const productReviews = db.reviews.filter(
 					review => review.productId === product.id
 				);
 
@@ -22,15 +24,15 @@ exports.Query = {
 						return acc + review.rating;
 					}, 0) / productReviews.length;
 
-				return avgRating >= filter.avgRating;
+				return avgRating >= (filter.avgRating ?? 0);
 			});
 		}
 
 		return filteredProducts;
 	},
 	product: (_, { id }, { db }) =>
-		db.products.find(product => product.id === id),
+		db.products.find(product => product.id === id) ?? null,
 	categories: (_, _2, { db }) => db.categories,
 	category: (_, { id }, { db }) =>
-		db.categories.find(category => category.id === id),
+		db.categories.find(category => category.id === id) ?? null,
 };
